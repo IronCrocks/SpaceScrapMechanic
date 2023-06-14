@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnObject : MonoBehaviour
+public class WeaponShoot : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject prefab;
+    //public GameObject player;
+    public GameObject projectile;
     public float distance = 0.2f;
     public float delay = 0.5f;
-    public float speed = 10f;
+    public float speed = 12f;
+
+    private AudioSource shotAudioSource;
 
     void Start()
     {
+        shotAudioSource = gameObject.GetComponent<AudioSource>();
         InvokeRepeating(nameof(SpawnPrefab), 0, delay);
     }
 
     void SpawnPrefab()
     {
         // Создаем новый объект
-        GameObject newObject = Instantiate(prefab);
+        GameObject newObject = Instantiate(projectile);
+        shotAudioSource.Play();
 
         // Вычисляем позицию нового объекта
         Vector3 newPosition = transform.position + transform.up * distance;
@@ -26,12 +28,11 @@ public class SpawnObject : MonoBehaviour
         // Изменяем позицию нового объекта
         newObject.transform.position = newPosition;
         newObject.transform.rotation = transform.rotation;
-
-
+        
         var rb = newObject.GetComponent<Rigidbody2D>(); // Получаем компонент Rigidbody2D
         rb.velocity = (Vector2)newObject.transform.up.normalized * speed;
 
         var script = newObject.GetComponent<Projectile>();
-        script.firing_ship = player;
+        //script.firing_ship = player;
     }
 }

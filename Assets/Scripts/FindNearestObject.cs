@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FindNearestObject : MonoBehaviour
 {
-    public float radius = 30f;
+    public float radius = 15f;
     public LayerMask layerMask;
 
     void Update()

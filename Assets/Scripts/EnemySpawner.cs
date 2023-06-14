@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // префаб врага
-    public float spawnRadius = 40f; // радиус, в пределах которого создается враг
+    public List<GameObject> enemyPrefabs; // префаб врага
+    public GameObject player;
+    public float spawnRadius = 20f; // радиус, в пределах которого создается враг
     public float spawnInterval = 1f; // интервал создания врагов
-
-    private float timeSinceLastSpawn = 0f; // время с последнего создания врага
 
     void Start()
     {
@@ -22,9 +20,9 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPosition = (Vector2)transform.position + randomDirection * spawnRadius;//Random.Range(spawnRadius, spawnRadius + spawnRadius);
 
         // Создаем врага на случайной позиции
-        var enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        var enemyType = Random.Range(0, enemyPrefabs.Count - 1);
+        var enemy = Instantiate(enemyPrefabs[enemyType], spawnPosition, Quaternion.identity);
         var enemyMovement = enemy.GetComponent<EnemyMovement>();
-        var player = GameObject.Find("Player");
         enemyMovement.player = player.transform;
     }
 }

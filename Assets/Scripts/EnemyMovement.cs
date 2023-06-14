@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public GameObject prefab;
     public Transform player;    // Ссылка на главного героя
     public float speed = 5f;    // Скорость движения объекта
 
@@ -19,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             // Создаем кватернион на основе углов Эйлера по оси Z
-            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle + 90);
 
             // Поворачиваем объект в направлении главного героя
             transform.rotation = targetRotation;
@@ -28,15 +27,4 @@ public class EnemyMovement : MonoBehaviour
             transform.position += speed * Time.deltaTime * (Vector3)direction;
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision) //  в чем разница между тригерентер и коллизионЕнтер. разница коолидер и коллизион(сигнатуры?)
-    //{
-    //    if (collision.gameObject.CompareTag("Projectile"))
-    //    {
-    //        Destroy(transform.gameObject);
-
-    //        GameObject newObject = Instantiate(prefab);
-    //        newObject.transform.position = transform.position;
-    //    }
-    //}
 }
