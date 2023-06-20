@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
+  - Relict
+  - LevelUpMenu
+  - GameOverMenu
   layers:
   - Default
   - TransparentFX

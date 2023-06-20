@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     {
         //GameObject obj = (GameObject)Instantiate(shoot_effect, transform.position - new Vector3(0, 0, 1), Quaternion.identity); //Spawn muzzle flash
         //obj.transform.parent = firing_ship.transform;
-        //Destroy(gameObject, 5f); //Bullet will despawn after 5 seconds
+        Destroy(gameObject, 3f); //Bullet will despawn after 5 seconds
     }
 
     // Update is called once per frame
