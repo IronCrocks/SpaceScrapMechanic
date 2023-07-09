@@ -124,6 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b3d832fdf9445f5b658b471bdcd105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3225449025480702468, guid: 2678f0457eec64c3eafb4e917b3accd7, type: 3}
   player: {fileID: 0}
-  speed: 4
+  speed: 2

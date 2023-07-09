@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +38,6 @@ public class PlayerLevelUp : MonoBehaviour
         maxExpCount *= 1.5f;
         Slider.maxValue = maxExpCount;
         expirienceCount = 0;
-        Time.timeScale = 0f;
 
         LevelUpMenu.SetActive(true);
         var levelUpMenuButton1 = LevelUpMenu.transform.GetChild(0);
@@ -57,21 +54,7 @@ public class PlayerLevelUp : MonoBehaviour
             button1.interactable = false;
         }
 
-        var levelUpMenuButton2 = LevelUpMenu.transform.GetChild(1);
-        var text2 = levelUpMenuButton2.gameObject.GetComponentInChildren<TMP_Text>();
-
-        if (PlayerStats.WeaponPowerLevel < PlayerStats.MaxWeaponPowerLevel)
-        {
-            text2.text = "Урон оружия - Уровень " + (PlayerStats.WeaponPowerLevel + 1);
-        }
-        else
-        {
-            text2.text = "Достигнут максимальный урон";
-            var button2 = levelUpMenuButton2.gameObject.GetComponent<Button>();
-            button2.interactable = false;
-        }
-
-        var levelUpMenuButton3 = LevelUpMenu.transform.GetChild(2);
+        var levelUpMenuButton3 = LevelUpMenu.transform.GetChild(1);
         var text3 = levelUpMenuButton3.gameObject.GetComponentInChildren<TMP_Text>();
 
         if (PlayerStats.WeaponFireRateLevel < PlayerStats.MaxWeaponFireRateLevel)
@@ -96,18 +79,6 @@ public class PlayerLevelUp : MonoBehaviour
 
         PlayerStats.Weapons[PlayerStats.WeaponCountLevel].SetActive(true);
         PlayerStats.WeaponCountLevel++;
-
-        AwakeWorld();
-    }
-
-    public void WeaponPowerLevelUp()
-    {
-        if (PlayerStats.WeaponPowerLevel >= PlayerStats.MaxWeaponPowerLevel)
-        {
-            return;
-        }
-
-        PlayerStats.WeaponPowerLevel++;
 
         AwakeWorld();
     }
@@ -138,7 +109,6 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void AwakeWorld()
     {
-        Time.timeScale = 1;
         LevelUpMenu.SetActive(false);
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WeaponShoot : MonoBehaviour
 {
-    //public GameObject player;
     public GameObject projectile;
     public float distance = 0.2f;
     public float fireRate = 0.5f;
@@ -21,7 +20,11 @@ public class WeaponShoot : MonoBehaviour
     {
         // Создаем новый объект
         GameObject newObject = Instantiate(projectile);
-        //shotAudioSource.Play();
+
+        if (shotAudioSource != null)
+        {
+            shotAudioSource.Play();
+        }
 
         // Вычисляем позицию нового объекта
         Vector3 newPosition = transform.position + transform.up * distance;

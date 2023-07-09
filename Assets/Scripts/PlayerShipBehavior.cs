@@ -31,13 +31,12 @@ public class PlayerShipBehavior : MonoBehaviour
             Instantiate(onDestroySound, transform.position, Quaternion.identity);
             Destroy(transform.gameObject);
             _gameOverMenu.SetActive(true);
-            Time.timeScale = 0;
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Loot"))
         {
             if (collision.gameObject.CompareTag("Relict"))
             {
-                PlayerData.RelictCrystalsCount++;
+                GameData.RelictCrystalsCount++;
             }
             else
             {

@@ -6,20 +6,20 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> enemyPrefabs; // префаб врага
     public GameObject player;
     public float spawnRadius = 20f; // радиус, в пределах которого создается враг
-    public float stepInterval = 10f;
-    public float spawnInterval = 1f; // интервал создания врагов
+    public float enemyWaveInterval = 10f;
+    public float defaultSpawnInterval = 1f; // интервал создания врагов
 
     private float _timer;
-    private float _currentInterval;
-    private int _stepCount;
+    private float _spawnEnemyInterval;
+    private int _waveCount;
     private int _enemyCount = 1;
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0, spawnInterval);
+        InvokeRepeating(nameof(SpawnEnemy), 0, defaultSpawnInterval);
 
-        _timer = stepInterval;
-        _currentInterval = spawnInterval;
+        _timer = enemyWaveInterval;
+        _spawnEnemyInterval = defaultSpawnInterval;
     }
 
     private void SpawnEnemy()
@@ -30,9 +30,10 @@ public class EnemySpawner : MonoBehaviour
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
             Vector2 spawnPosition = (Vector2)transform.position + randomDirection * spawnRadius;
 
+            int enemyIndex = i < enemyPrefabs.Count ? i : Random.Range(0, enemyPrefabs.Count - 1);
+
             // Создаем врага на случайной позиции
-            //var enemyType = Random.Range(0, enemyPrefabs.Count - 1);
-            var enemy = Instantiate(enemyPrefabs[i], spawnPosition, Quaternion.identity);
+            var enemy = Instantiate(enemyPrefabs[enemyIndex], spawnPosition, Quaternion.identity);
             var enemyMovement = enemy.GetComponent<EnemyMovement>();
             enemyMovement.player = player.transform;
         }
@@ -44,23 +45,23 @@ public class EnemySpawner : MonoBehaviour
 
         if (_timer <= 0)
         {
-            _stepCount++;
+            _waveCount++;
 
-            if (_stepCount > 5)
+            if (_waveCount > 5)
             {
                 _enemyCount++;
-                _currentInterval = spawnInterval;
+                _spawnEnemyInterval = defaultSpawnInterval;
             }
 
-            _currentInterval -= 0.1f;
+            _spawnEnemyInterval -= 0.1f;
             RestartSpawnEnemy();
-            _timer = stepInterval;
+            _timer = enemyWaveInterval;
         }
     }
 
     private void RestartSpawnEnemy()
     {
         CancelInvoke(nameof(SpawnEnemy));
-        InvokeRepeating(nameof(SpawnEnemy), 0, _currentInterval);
+        InvokeRepeating(nameof(SpawnEnemy), 0, _spawnEnemyInterval);
     }
 }

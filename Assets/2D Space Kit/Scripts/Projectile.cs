@@ -2,7 +2,6 @@
 
 public class Projectile : MonoBehaviour
 {
-    //public GameObject shoot_effect;
     public GameObject hit_effect;
     public GameObject shipScrap;
     public GameObject relictShipScrap;
@@ -10,17 +9,8 @@ public class Projectile : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        //GameObject obj = (GameObject)Instantiate(shoot_effect, transform.position - new Vector3(0, 0, 1), Quaternion.identity); //Spawn muzzle flash
-        //obj.transform.parent = firing_ship.transform;
-        Destroy(gameObject, 3f); //Bullet will despawn after 5 seconds
+        Destroy(gameObject, 3f); //Bullet will despawn
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
-
 
     private void OnTriggerEnter2D(Collider2D col)
     {
