@@ -15,14 +15,13 @@ public class CameraScaler : MonoBehaviour
         _defaultSize = _camera.orthographicSize;
     }
 
-    private void Update()
+    private void Start()
     {
         float targetScreenRatio = targetScreenWidth / targetScreenHeight;
         float currentScreenRatio = Screen.width / (float)Screen.height;
 
         if (currentScreenRatio < targetScreenRatio)
         {
-            Debug.Log("horizontal");
             var ratio = Math.Round(targetScreenRatio / currentScreenRatio, 2);
             _camera.orthographicSize = _defaultSize * Convert.ToSingle(ratio);
         }

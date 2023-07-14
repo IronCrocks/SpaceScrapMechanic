@@ -1,19 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void OnDisable()
-    {
-        Time.timeScale = 1f;
-    }
+    public GameManager GameManager;
 
     public void Restart()
     {
@@ -22,6 +12,18 @@ public class GameOverMenu : MonoBehaviour
 
     public void Revive()
     {
+        GameManager.KillEnemies();
+        gameObject.SetActive(false);
+    }
 
+    private void OnEnable()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
+        GameManager.Player.SetActive(true);
     }
 }

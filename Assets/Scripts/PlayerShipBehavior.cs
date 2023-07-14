@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerShipBehavior : MonoBehaviour
 {
@@ -25,14 +22,7 @@ public class PlayerShipBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //  в чем разница между тригерентер и коллизионЕнтер. разница коолидер и коллизион(сигнатуры?)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
-        {
-            Instantiate(onDestroyEffect, transform.position, Quaternion.identity);
-            Instantiate(onDestroySound, transform.position, Quaternion.identity);
-            Destroy(transform.gameObject);
-            _gameOverMenu.SetActive(true);
-        }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Loot"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Loot"))
         {
             if (collision.gameObject.CompareTag("Relict"))
             {
@@ -40,10 +30,17 @@ public class PlayerShipBehavior : MonoBehaviour
             }
             else
             {
-               playerScript.expirienceCount++;
+                playerScript.expirienceCount++;
             }
 
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemies"))
+        {
+            Instantiate(onDestroyEffect, transform.position, Quaternion.identity);
+            Instantiate(onDestroySound, transform.position, Quaternion.identity);
+            _gameOverMenu.SetActive(true);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 }

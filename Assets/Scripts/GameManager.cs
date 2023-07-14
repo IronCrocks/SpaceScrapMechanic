@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         CreatePlayerShip();
     }
 
-    private void CreatePlayerShip()
+    public void CreatePlayerShip()
     {
         GameObject playerShip = null;
         int maxWeaponsCount = 0;
@@ -32,5 +32,15 @@ public class GameManager : MonoBehaviour
 
         var playerStats = playerShip.GetComponent<PlayerStats>();
         playerStats.MaxWeaponCountLevel = maxWeaponsCount;
+    }
+
+    public void KillEnemies()
+    {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemies");
+
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 }

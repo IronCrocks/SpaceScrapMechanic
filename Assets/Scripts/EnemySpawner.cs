@@ -16,10 +16,10 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0, defaultSpawnInterval);
-
         _timer = enemyWaveInterval;
         _spawnEnemyInterval = defaultSpawnInterval;
+
+        RestartSpawnEnemy();
     }
 
     private void SpawnEnemy()

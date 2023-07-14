@@ -7,14 +7,19 @@ public class PlayerLevelUp : MonoBehaviour
     public int expirienceCount = 0;
     public Slider Slider;
     public GameObject LevelUpMenu;
+    public CanvasGroup _fadedRelictCrystalsCountText;
 
-    private float maxExpCount = 2;
+    private float maxExpCount = 10;
     private PlayerStats PlayerStats;
+    private int _currentLevel;
+    private int _maxLevel;
 
     private void Start()
     {
         Slider.maxValue = maxExpCount;
         PlayerStats = GetComponentInChildren<PlayerStats>();
+        _maxLevel = PlayerStats.MaxWeaponCountLevel - 1 + PlayerStats.MaxWeaponFireRateLevel - 1;
+        _fadedRelictCrystalsCountText.alpha = 0;
     }
 
     // Update is called once per frame
@@ -27,7 +32,19 @@ public class PlayerLevelUp : MonoBehaviour
     {
         if (expirienceCount >= maxExpCount)
         {
-            ActivateLevelUpMenu();
+            if (_currentLevel < _maxLevel)
+            {
+                ActivateLevelUpMenu();
+            }
+            else
+            {
+                AddRelictCrystals();
+            }
+
+            maxExpCount *= 1.5f;
+            Slider.maxValue = maxExpCount;
+            expirienceCount = 0;
+            _currentLevel++;
         }
 
         Slider.value = expirienceCount;
@@ -35,10 +52,6 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void ActivateLevelUpMenu()
     {
-        maxExpCount *= 1.5f;
-        Slider.maxValue = maxExpCount;
-        expirienceCount = 0;
-
         LevelUpMenu.SetActive(true);
         var levelUpMenuButton1 = LevelUpMenu.transform.GetChild(0);
         var text1 = levelUpMenuButton1.gameObject.GetComponentInChildren<TMP_Text>();
@@ -105,6 +118,21 @@ public class PlayerLevelUp : MonoBehaviour
         }
 
         AwakeWorld();
+    }
+
+    private void AddRelictCrystals()
+    {
+        GameData.RelictCrystalsCount += 10;
+        _fadedRelictCrystalsCountText.alpha = 1;
+        InvokeRepeating(nameof(Fade), 0, 0.05f);
+    }
+
+    private void Fade() {
+        _fadedRelictCrystalsCountText.alpha -= 0.05f;
+
+        if (_fadedRelictCrystalsCountText.alpha <= 0) {
+            CancelInvoke(nameof(Fade));
+        }
     }
 
     private void AwakeWorld()
