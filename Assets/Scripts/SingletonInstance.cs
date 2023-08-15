@@ -8,6 +8,7 @@ public class SingletonInstance : MonoBehaviour
     {
         if (instance == null)
         {
+            transform.parent = null;
             instance = this;
             DontDestroyOnLoad(gameObject);
         }

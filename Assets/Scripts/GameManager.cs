@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         GameObject playerShip = null;
         int maxWeaponsCount = 0;
 
-        switch (GameData.SelectedShip)
+        switch (Progress.Instance.PlayerInfo.SelectedShip)
         {
             case PlayerShips.Default:
                 playerShip = Instantiate(DefaultPlayerShipPrefab, Player.transform);

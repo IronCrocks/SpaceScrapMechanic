@@ -7,7 +7,7 @@ public class PlayerLevelUp : MonoBehaviour
     public int expirienceCount = 0;
     public Slider Slider;
     public GameObject LevelUpMenu;
-    public CanvasGroup _fadedRelictCrystalsCountText;
+    public CrystalsManager CrystalsManager;
 
     private float maxExpCount = 10;
     private PlayerStats PlayerStats;
@@ -19,7 +19,6 @@ public class PlayerLevelUp : MonoBehaviour
         Slider.maxValue = maxExpCount;
         PlayerStats = GetComponentInChildren<PlayerStats>();
         _maxLevel = PlayerStats.MaxWeaponCountLevel - 1 + PlayerStats.MaxWeaponFireRateLevel - 1;
-        _fadedRelictCrystalsCountText.alpha = 0;
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class PlayerLevelUp : MonoBehaviour
             }
             else
             {
-                AddRelictCrystals();
+                CrystalsManager.AddTen();
             }
 
             maxExpCount *= 1.5f;
@@ -81,8 +80,7 @@ public class PlayerLevelUp : MonoBehaviour
             button3.interactable = false;
         }
     }
-
-
+    
     public void WeaponCountLevelUp()
     {
         if (PlayerStats.WeaponCountLevel >= PlayerStats.MaxWeaponCountLevel)
@@ -119,22 +117,7 @@ public class PlayerLevelUp : MonoBehaviour
 
         AwakeWorld();
     }
-
-    private void AddRelictCrystals()
-    {
-        GameData.RelictCrystalsCount += 10;
-        _fadedRelictCrystalsCountText.alpha = 1;
-        InvokeRepeating(nameof(Fade), 0, 0.05f);
-    }
-
-    private void Fade() {
-        _fadedRelictCrystalsCountText.alpha -= 0.05f;
-
-        if (_fadedRelictCrystalsCountText.alpha <= 0) {
-            CancelInvoke(nameof(Fade));
-        }
-    }
-
+    
     private void AwakeWorld()
     {
         LevelUpMenu.SetActive(false);

@@ -1,6 +1,9 @@
-public static class GameData
+using System;
+
+[Serializable]
+public class GameData
 {
-    public static int RelictCrystalsCount { get; set; }
-    public static PlayerShips SelectedShip { get; set; }
-    public static bool IsRelictShipUnlocked { get; set; }
+    public int RelictCrystalsCount { get; set; }
+    public PlayerShips SelectedShip { get; set; }
+    public bool IsRelictShipUnlocked { get; set; }
 }

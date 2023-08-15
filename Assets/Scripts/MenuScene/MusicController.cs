@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -16,7 +14,7 @@ public class MusicController : MonoBehaviour
     public void ToggleMusic()
     {
         _isMusicOn = !_isMusicOn;
-        float musicVolume = _isMusicOn ? 0 : -80;
+        float musicVolume = _isMusicOn ? -5 : -80;
         AudioMixer.SetFloat("MusicVolume", musicVolume);
         _buttonImage.sprite = _isMusicOn ? MusicOnIcon : MusicOffIcon;
     }

@@ -228,8 +228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 600, y: 160}
+  m_AnchoredPosition: {x: 0, y: -155}
+  m_SizeDelta: {x: 500, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132707142
 MonoBehaviour:
@@ -564,7 +564,6 @@ GameObject:
   - component: {fileID: 417631115}
   - component: {fileID: 417631118}
   - component: {fileID: 417631117}
-  - component: {fileID: 417631116}
   m_Layer: 5
   m_Name: CrystalsCount
   m_TagString: Untagged
@@ -592,18 +591,6 @@ RectTransform:
   m_AnchoredPosition: {x: 108.72992, y: -34.168243}
   m_SizeDelta: {x: 40.406982, y: 40.341003}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &417631116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417631114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39232aa9166cd4adba052fb347865f9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &417631117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,8 +1557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 17.578}
-  m_SizeDelta: {x: 794.707, y: 842.709}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 670, y: 760}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669303960
 MonoBehaviour:
@@ -1660,8 +1647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 160}
-  m_SizeDelta: {x: 600, y: 160}
+  m_AnchoredPosition: {x: 0, y: 155}
+  m_SizeDelta: {x: 500, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &764880474
 MonoBehaviour:
@@ -2370,6 +2357,7 @@ GameObject:
   - component: {fileID: 1210813373}
   - component: {fileID: 1210813372}
   - component: {fileID: 1210813371}
+  - component: {fileID: 1210813374}
   m_Layer: 5
   m_Name: FadedCrystalsCount
   m_TagString: Untagged
@@ -2506,6 +2494,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210813369}
   m_CullTransparentMesh: 1
+--- !u!114 &1210813374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210813369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de858461c979164981aea979111e7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1422616637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,7 +2754,7 @@ MonoBehaviour:
   expirienceCount: 1
   Slider: {fileID: 655506005}
   LevelUpMenu: {fileID: 669303958}
-  _fadedRelictCrystalsCountText: {fileID: 1210813371}
+  CrystalsManager: {fileID: 907432619442624419}
 --- !u!1 &1789468169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7884,3 +7884,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1780545952}
   smoothSpeed: 0.125
+--- !u!1001 &907432619442624418
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 863.04535
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 400.11606
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.54955715
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859554844379642045, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125635110002591863, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: m_Name
+      value: CrystalsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958494744679984716, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: RelictCrystalsText
+      value: 
+      objectReference: {fileID: 417631117}
+    - target: {fileID: 8958494744679984716, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: FadedRelictCrystalsCountText
+      value: 
+      objectReference: {fileID: 1210813371}
+    - target: {fileID: 8958494744679984716, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+      propertyPath: _fadedRelictCrystalsCountText
+      value: 
+      objectReference: {fileID: 1210813371}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+--- !u!114 &907432619442624419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8958494744679984716, guid: 4e82c9796012d3841905d969b0943b9a, type: 3}
+  m_PrefabInstance: {fileID: 907432619442624418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab533c8ec223764bb417c53537c79e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

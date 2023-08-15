@@ -15,13 +15,14 @@ public class ShipSettings : MonoBehaviour
     public Button SelectButton;
     public TMP_Text ShipCost;
     public GameObject shipLock;
+    public CrystalsManager CrystalsManager;
 
     private PlayerShips _viewedShip;
     private int _relictShipCost = 100;
 
     private void OnEnable()
     {
-        switch (GameData.SelectedShip)
+        switch (Progress.Instance.PlayerInfo.SelectedShip)
         {
             case PlayerShips.Default:
                 ShowDefaultShip();
@@ -61,7 +62,7 @@ public class ShipSettings : MonoBehaviour
         SelectButton.gameObject.SetActive(true);
         shipLock.SetActive(false);
 
-        SelectButton.interactable = GameData.SelectedShip != PlayerShips.Default;
+        SelectButton.interactable = Progress.Instance.PlayerInfo.SelectedShip != PlayerShips.Default;
         ShipCost.text = "Приоберетен";
     }
 
@@ -75,13 +76,13 @@ public class ShipSettings : MonoBehaviour
 
         _viewedShip = PlayerShips.RelictShip;
 
-        if (GameData.IsRelictShipUnlocked)
+        if (Progress.Instance.PlayerInfo.IsRelictShipUnlocked)
         {
             UnlockButton.gameObject.SetActive(false);
             SelectButton.gameObject.SetActive(true);
             shipLock.SetActive(false);
 
-            SelectButton.interactable = GameData.SelectedShip == PlayerShips.Default;
+            SelectButton.interactable = Progress.Instance.PlayerInfo.SelectedShip == PlayerShips.Default;
             ShipCost.text = "Приоберетен";
         }
         else
@@ -90,7 +91,7 @@ public class ShipSettings : MonoBehaviour
             UnlockButton.gameObject.SetActive(true);
             shipLock.SetActive(true);
 
-            UnlockButton.interactable = GameData.RelictCrystalsCount >= _relictShipCost;
+            UnlockButton.interactable = Progress.Instance.PlayerInfo.RelictCrystalsCount >= _relictShipCost;
             ShipCost.text = _relictShipCost.ToString();
         }
 
@@ -98,15 +99,16 @@ public class ShipSettings : MonoBehaviour
 
     public void Unlock()
     {
-        GameData.RelictCrystalsCount -= _relictShipCost;
-        GameData.IsRelictShipUnlocked = true;
-
+        CrystalsManager.Subtract(_relictShipCost);
+        Progress.Instance.PlayerInfo.IsRelictShipUnlocked = true;
+        Progress.Instance.Save();
         ShowRelictShip();
     }
 
     public void SelectShip()
     {
-        GameData.SelectedShip = _viewedShip;
+        Progress.Instance.PlayerInfo.SelectedShip = _viewedShip;
+        Progress.Instance.Save();
         SelectButton.interactable = false;
     }
 }

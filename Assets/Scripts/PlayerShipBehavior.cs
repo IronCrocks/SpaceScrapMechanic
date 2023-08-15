@@ -5,7 +5,7 @@ public class PlayerShipBehavior : MonoBehaviour
     public GameObject onDestroyEffect;
     public GameObject onDestroySound;
 
-    private PlayerLevelUp playerScript;
+    private PlayerLevelUp _playerScript;
     private GameObject _gameOverMenu;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class PlayerShipBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GetComponentInParent<PlayerLevelUp>();
+        _playerScript = GetComponentInParent<PlayerLevelUp>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //  в чем разница между тригерентер и коллизионЕнтер. разница коолидер и коллизион(сигнатуры?)
@@ -26,11 +26,11 @@ public class PlayerShipBehavior : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Relict"))
             {
-                GameData.RelictCrystalsCount++;
+                _playerScript.CrystalsManager.AddOne();
             }
             else
             {
-                playerScript.expirienceCount++;
+                _playerScript.expirienceCount++;
             }
 
             Destroy(collision.gameObject);
@@ -41,6 +41,7 @@ public class PlayerShipBehavior : MonoBehaviour
             Instantiate(onDestroySound, transform.position, Quaternion.identity);
             _gameOverMenu.SetActive(true);
             transform.parent.gameObject.SetActive(false);
+            Progress.Instance.Save();
         }
     }
 }
